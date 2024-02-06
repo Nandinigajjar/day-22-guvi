@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    import React from 'react';
+    import './PriceCard.css'; // CSS file for styling
+    
+    const PriceCard = ({ plan, price, features, buttonText }) => {
+      return (
+        <div className="price-card">
+          <h2 className="plan">{plan}</h2>
+          <div className="price">${price}</div>
+          <ul className="features">
+            {features.map((feature, index) => (
+              <li key={index}>{feature}</li>
+            ))}
+          </ul>
+          <button className="btn">{buttonText}</button>
+        </div>
+      );
+    };
+    
+    const App = () => {
+      const plans = [
+        {
+          plan: 'Basic',
+          price: '10',
+          features: ['Feature 1', 'Feature 2', 'Feature 3'],
+          buttonText: 'Choose Basic'
+        },
+        {
+          plan: 'Standard',
+          price: '20',
+          features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
+          buttonText: 'Choose Standard'
+        },
+        {
+          plan: 'Premium',
+          price: '30',
+          features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5'],
+          buttonText: 'Choose Premium'
+        }
+      ];
+    
+      return (
+        <div className="price-cards-container">
+          {plans.map((plan, index) => (
+            <PriceCard
+              key={index}
+              plan={plan.plan}
+              price={plan.price}
+              features={plan.features}
+              buttonText={plan.buttonText}
+            />
+          ))}
+        </div>
+      );
+    };
+    
+    export default App;
+    
+  </body>
+</html>
